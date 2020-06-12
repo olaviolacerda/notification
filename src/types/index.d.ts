@@ -1,12 +1,6 @@
-import knex from 'knex';
-import { Router } from 'express';
 import { AnySchema } from '@hapi/joi';
-import { Options, ConsumeMessage, Channel, Connection } from 'amqplib';
-
-import { UserModel } from '../container/models/user';
-import { UserService } from '../container/services/user';
+import { Channel, Connection, ConsumeMessage, Options } from 'amqplib';
 import { Container } from '../container';
-
 import { IUserModel, IUserProducer } from './User';
 
 declare global {
@@ -22,26 +16,11 @@ declare global {
   }
 }
 
-export type MySQLTransaction = knex.Transaction;
-export type Database = knex;
-export type QueryBuilder = knex.QueryBuilder;
-export type TransactionScope = (callback: (trx: MySQLTransaction) => Promise<any>) => Promise<any>;
-
 export type Nullable<T> = T | undefined | null;
 export type UUID<T> = T;
 
 type Env = {
-  readonly httpPort: number;
-  readonly httpBodyLimit: string;
   readonly userServiceHelper?: string;
-  readonly dbPort: number;
-  readonly dbHost: string;
-  readonly dbUsername?: string;
-  readonly dbPassword?: string;
-  readonly dbDatabase?: string;
-  readonly dbPoolMin: number;
-  readonly dbPoolMax: number;
-  readonly dbDebug: boolean;
   readonly rabbitMqHost?: string;
   readonly rabbitMqProtocol?: string;
   readonly rabbitMqPort: number;
@@ -54,8 +33,6 @@ type Env = {
 export type AppConfig =
   Pick<
     Env,
-    'httpPort' |
-    'httpBodyLimit' |
     'rabbitMqHost' |
     'rabbitMqProtocol' |
     'rabbitMqPort' |
@@ -65,11 +42,6 @@ export type AppConfig =
     'rabbitMqVhostHome'
   >;
 
-export type HttpServerConfig = {
-  port: Env['httpPort'];
-  bodyLimit: Env['httpBodyLimit'];
-};
-
 interface ICodedError {
   message: string;
   code: string;
@@ -77,8 +49,6 @@ interface ICodedError {
 }
 
 export interface IContainer {
-  readonly createTransaction: TransactionScope;
-  readonly userService: UserService;
 }
 
 export type ServiceContext = {
@@ -87,21 +57,7 @@ export type ServiceContext = {
 };
 
 export type ContainerConfig = {
-  mysqlDatabase: knex;
   vHostList: IVhost[];
-};
-
-export interface IController {
-  register(router: Router): void;
-}
-
-export type UpdateParams<T> = {
-  filters: Partial<{
-    [K in keyof T]: T[K];
-  }>,
-  data: Partial<{
-    [K in keyof T]: T[K];
-  }>;
 };
 
 type AmqpConfig = {

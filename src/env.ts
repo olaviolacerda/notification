@@ -5,8 +5,6 @@ dotenv.config();
 
 export const env: Env = {
   // HTTP server config
-  httpPort: (process.env.PORT && parseInt(process.env.PORT, 10)) || 3000,
-  httpBodyLimit: process.env.BODY_LIMIT || '10kb',
   userServiceHelper: process.env.USER_SERVICE_HELPER_URL,
 
   // Database config

@@ -1,17 +1,12 @@
-import './helpers/elasticApm';
-
 import * as R from 'ramda';
-
-import { Logger as logger } from './logger';
-import { env } from './env';
 import { Application } from './app';
-
+import { env } from './env';
+import './helpers/elasticApm';
+import { Logger as logger } from './logger';
 import { AppConfig } from './types';
 
 const appConfig: AppConfig = R.pick(
   [
-    'httpPort',
-    'httpBodyLimit',
     'rabbitMqHost',
     'rabbitMqProtocol',
     'rabbitMqPort',
