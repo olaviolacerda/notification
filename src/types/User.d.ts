@@ -1,12 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
-
-import { RabbitMQ } from '../amqp/rabbit';
-import { MySQLModel } from '../container/models/mysql';
-
-import {
-  MySQLTransaction, Exchange, RoutingKey,
-  QueueMessage, IRabbitMq, IVhost,
-} from '.';
+import { IVhost } from '.';
 
 export type User = {
   id: string;
@@ -16,14 +8,6 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export interface IUserModel extends MySQLModel<User> {
-  /**
-   * Get all users from the database
-   * @param trx Transaction object
-   */
-  all(trx?: MySQLTransaction): Promise<User[]>;
-}
 
 export type UserIntegrationAmqpConfig = {
   vhost: IVhost[];

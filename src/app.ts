@@ -2,7 +2,6 @@ import * as R from 'ramda';
 import * as RA from 'ramda-adjunct';
 import { AmqpServer } from './amqp';
 import { Container } from './container';
-import database from './helpers/database';
 import { Logger as logger } from './logger';
 import { AmqpServerConfig, AppConfig } from './types';
 
@@ -65,7 +64,6 @@ export class Application {
     this.setupAmqpServer();
 
     const container = new Container({
-      mysqlDatabase: database(),
       vHostList: this.getAmqpServer().getVHostList(),
     });
 

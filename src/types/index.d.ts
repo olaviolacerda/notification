@@ -1,12 +1,7 @@
 import { AnySchema } from '@hapi/joi';
 import { Channel, Connection, ConsumeMessage, Options } from 'amqplib';
-import { Router } from 'express';
-import knex from 'knex';
 import { Container } from '../container';
-import { UserService } from '../container/services/user';
 import { IUserModel, IUserProducer } from './User';
-
-
 
 declare global {
   namespace jest {
@@ -21,24 +16,11 @@ declare global {
   }
 }
 
-export type MySQLTransaction = knex.Transaction;
-export type Database = knex;
-export type QueryBuilder = knex.QueryBuilder;
-export type TransactionScope = (callback: (trx: MySQLTransaction) => Promise<any>) => Promise<any>;
-
 export type Nullable<T> = T | undefined | null;
 export type UUID<T> = T;
 
 type Env = {
   readonly userServiceHelper?: string;
-  readonly dbPort: number;
-  readonly dbHost: string;
-  readonly dbUsername?: string;
-  readonly dbPassword?: string;
-  readonly dbDatabase?: string;
-  readonly dbPoolMin: number;
-  readonly dbPoolMax: number;
-  readonly dbDebug: boolean;
   readonly rabbitMqHost?: string;
   readonly rabbitMqProtocol?: string;
   readonly rabbitMqPort: number;
@@ -67,8 +49,6 @@ interface ICodedError {
 }
 
 export interface IContainer {
-  readonly createTransaction: TransactionScope;
-  readonly userService: UserService;
 }
 
 export type ServiceContext = {
@@ -77,21 +57,7 @@ export type ServiceContext = {
 };
 
 export type ContainerConfig = {
-  mysqlDatabase: knex;
   vHostList: IVhost[];
-};
-
-export interface IController {
-  register(router: Router): void;
-}
-
-export type UpdateParams<T> = {
-  filters: Partial<{
-    [K in keyof T]: T[K];
-  }>,
-  data: Partial<{
-    [K in keyof T]: T[K];
-  }>;
 };
 
 type AmqpConfig = {
