@@ -7,15 +7,11 @@ export const env: Env = {
   // HTTP server config
   userServiceHelper: process.env.USER_SERVICE_HELPER_URL,
 
-  // Database config
-  dbPort: parseInt(process.env.DB_PORT || '3306', 10),
-  dbHost: process.env.DB_HOST || '',
-  dbUsername: process.env.DB_USERNAME,
-  dbPassword: process.env.DB_PASSWORD,
-  dbDatabase: process.env.DB_DATABASE,
-  dbPoolMin: parseInt(process.env.DB_POOL_MIN || '1', 10),
-  dbPoolMax: parseInt(process.env.DB_POOL_MAX || '1', 10),
-  dbDebug: process.env.DB_DEBUG === 'true',
+  // Mailer config
+  mailerPort: parseInt(process.env.MAILER_PORT || '2525', 10),
+  mailerHost: process.env.MAILER_HOST || '',
+  mailerUsername: process.env.MAILER_USERNAME,
+  mailerPassword: process.env.MAILER_PASSWORD,
 
   // RabbitMQ config
   rabbitMqHost: process.env.RABBIT_HOST || 'localhost',
@@ -24,6 +20,5 @@ export const env: Env = {
   rabbitMqUsername: process.env.RABBIT_USERNAME,
   rabbitMqPassword: process.env.RABBIT_PASSWORD,
   rabbitMqReconnectTimeout: parseInt(process.env.RABBIT_RECONNECT_TIMEOUT || '5000', 10),
-
   rabbitMqVhostHome: process.env.RABBIT_VHOST_HOME || '',
 };

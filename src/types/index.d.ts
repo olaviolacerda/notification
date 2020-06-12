@@ -1,7 +1,7 @@
 import { AnySchema } from '@hapi/joi';
 import { Channel, Connection, ConsumeMessage, Options } from 'amqplib';
 import { Container } from '../container';
-import { IUserModel, IUserProducer } from './User';
+import { IMailer } from './email';
 
 declare global {
   namespace jest {
@@ -20,6 +20,10 @@ export type Nullable<T> = T | undefined | null;
 export type UUID<T> = T;
 
 type Env = {
+  readonly mailerPort?: number;
+  readonly mailerHost: string;
+  readonly mailerUsername?: string;
+  readonly mailerPassword?: string;
   readonly userServiceHelper?: string;
   readonly rabbitMqHost?: string;
   readonly rabbitMqProtocol?: string;
@@ -52,8 +56,7 @@ export interface IContainer {
 }
 
 export type ServiceContext = {
-  userModel: IUserModel;
-  userProducer: IUserProducer;
+  mailer: IMailer;
 };
 
 export type ContainerConfig = {
