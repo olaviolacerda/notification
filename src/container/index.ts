@@ -8,6 +8,8 @@ export class Container implements IContainer {
 
     const serviceContext: ServiceContext = this
       .createServiceContext(config.vHostList);
+
+    this.emailService = new EmailService(serviceContext);
   }
 
   private createServiceContext = (
