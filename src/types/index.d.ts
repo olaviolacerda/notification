@@ -1,13 +1,12 @@
-import knex from 'knex';
-import { Router } from 'express';
 import { AnySchema } from '@hapi/joi';
-import { Options, ConsumeMessage, Channel, Connection } from 'amqplib';
-
-import { UserModel } from '../container/models/user';
-import { UserService } from '../container/services/user';
+import { Channel, Connection, ConsumeMessage, Options } from 'amqplib';
+import { Router } from 'express';
+import knex from 'knex';
 import { Container } from '../container';
-
+import { UserService } from '../container/services/user';
 import { IUserModel, IUserProducer } from './User';
+
+
 
 declare global {
   namespace jest {
@@ -31,8 +30,6 @@ export type Nullable<T> = T | undefined | null;
 export type UUID<T> = T;
 
 type Env = {
-  readonly httpPort: number;
-  readonly httpBodyLimit: string;
   readonly userServiceHelper?: string;
   readonly dbPort: number;
   readonly dbHost: string;
@@ -54,8 +51,6 @@ type Env = {
 export type AppConfig =
   Pick<
     Env,
-    'httpPort' |
-    'httpBodyLimit' |
     'rabbitMqHost' |
     'rabbitMqProtocol' |
     'rabbitMqPort' |
@@ -64,11 +59,6 @@ export type AppConfig =
     'rabbitMqReconnectTimeout' |
     'rabbitMqVhostHome'
   >;
-
-export type HttpServerConfig = {
-  port: Env['httpPort'];
-  bodyLimit: Env['httpBodyLimit'];
-};
 
 interface ICodedError {
   message: string;
