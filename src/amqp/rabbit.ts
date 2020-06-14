@@ -1,14 +1,10 @@
 import { connect, Options } from 'amqplib';
-
-import { AmqpIntegration } from './amqp';
 import { Logger as logger } from '../logger';
-import { toBuffer } from '../helpers/conversion';
+import { AmqpChannel, AmqpConnection, AmqpIntegrationConfig, AmqpPublishOptions, Exchange, IRabbitMq, RoutingKey } from '../types';
+import { toBuffer } from '../utils/conversion';
+import { AmqpIntegration } from './amqp';
 
-import {
-  AmqpIntegrationConfig, Exchange,
-  RoutingKey, IRabbitMq, AmqpChannel,
-  AmqpConnection, AmqpPublishOptions,
-} from '../types';
+
 
 export abstract class RabbitMQ extends AmqpIntegration implements IRabbitMq {
   private connection: AmqpConnection;

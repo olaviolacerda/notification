@@ -1,7 +1,7 @@
 import { AnySchema } from '@hapi/joi';
 import { Channel, Connection, ConsumeMessage, Options } from 'amqplib';
 import { Container } from '../container';
-import { IMailer } from './email';
+import { IEmailService, IMailer } from './email';
 
 declare global {
   namespace jest {
@@ -53,6 +53,7 @@ interface ICodedError {
 }
 
 export interface IContainer {
+  emailService: IEmailService;
 }
 
 export type ServiceContext = {

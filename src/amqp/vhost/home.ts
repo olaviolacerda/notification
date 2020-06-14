@@ -1,8 +1,7 @@
-import { RabbitMQ } from '../rabbit';
 import { Container } from '../../container';
-import { UserConsumer } from '../consumers/user';
-
 import { AmqpConfig, IVhost } from '../../types';
+import { EmailConsumer } from '../consumers/email';
+import { RabbitMQ } from '../rabbit';
 
 export class HomeVhost extends RabbitMQ implements IVhost {
   private container: Container | null;
@@ -17,7 +16,7 @@ export class HomeVhost extends RabbitMQ implements IVhost {
 
   private loadConsumers() {
     return [
-      new UserConsumer({
+      new EmailConsumer({
         container: this.container!,
       }),
     ];
