@@ -12,6 +12,7 @@ export const env: Env = {
   mailerHost: process.env.MAILER_HOST || '',
   mailerUsername: process.env.MAILER_USERNAME,
   mailerPassword: process.env.MAILER_PASSWORD,
+  mailerFrom: process.env.MAILER_FROM,
 
   // RabbitMQ config
   rabbitMqHost: process.env.RABBIT_HOST || 'localhost',

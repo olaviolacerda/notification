@@ -7,12 +7,10 @@ interface IEmailRequest {
     authorization: string;
   };
   body: {
-    from: string;
+    from?: string;
     to: string[];
-    replyTo?: string[];
     subject: string;
-    html: string;
-    [key: string]: any,
+    text: string;
   };
 }
 

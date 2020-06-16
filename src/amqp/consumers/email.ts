@@ -32,7 +32,7 @@ export class EmailConsumer extends Consumer {
   async sendEmail(msg: AmqpParsedMessage<Email>): Promise<void> {
     if (!msg) return;
 
-    const content = msg.content;
+    const content = msg?.content;
 
     await this.emailService.sendEmail(content);
     Logger.info('Email sent to user', content.to);

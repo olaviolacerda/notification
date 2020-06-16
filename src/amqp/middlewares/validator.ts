@@ -1,7 +1,7 @@
-import { curryN } from 'ramda';
 import { AnySchema } from '@hapi/joi';
-import { AmqpMessage, AmqpParsedMessage } from '../../types';
+import { curryN } from 'ramda';
 import { BadRequest } from '../../errors';
+import { AmqpMessage, AmqpParsedMessage } from '../../types';
 
 /**
  * Applies the validation of the desired message schema
@@ -11,7 +11,7 @@ import { BadRequest } from '../../errors';
 export const validatorMiddleware = curryN(
   2,
   <T>(schema: AnySchema, msg: AmqpParsedMessage<T>): AmqpMessage => {
-    const validation = schema.validate(msg, {
+    const validation = schema.validate(msg.content, {
       abortEarly: false,
       stripUnknown: true,
       allowUnknown: true,

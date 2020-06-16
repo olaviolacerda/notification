@@ -1,3 +1,4 @@
+import { env } from '../../env';
 import { ServiceContext } from '../../types';
 import { IEmailService, IMailer, MailerSendMailParams } from '../../types/email';
 
@@ -9,6 +10,9 @@ export class EmailService implements IEmailService {
   }
 
   sendEmail(options: MailerSendMailParams): Promise<void> {
+    if (!options.from) {
+      options.from = env.mailerFrom;
+    }
     return this.mailer.sendEmail(options);
   }
 }

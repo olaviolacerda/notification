@@ -24,6 +24,7 @@ type Env = {
   readonly mailerHost: string;
   readonly mailerUsername?: string;
   readonly mailerPassword?: string;
+  readonly mailerFrom?: string;
   readonly userServiceHelper?: string;
   readonly rabbitMqHost?: string;
   readonly rabbitMqProtocol?: string;
