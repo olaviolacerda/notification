@@ -1,7 +1,7 @@
 import { assoc, curryN } from 'ramda';
-
 import { AmqpMessage, AmqpParsedMessage } from '../../types';
-import { toJSON } from '../../helpers/conversion';
+import { toJSON } from '../../utils/conversion';
+
 
 /**
  * Parses the AMQP message to use as object inside the consumers

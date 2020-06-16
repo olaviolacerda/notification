@@ -45,22 +45,23 @@ components:
   schemas:
     notificationPayload:
       type: object
-      required: ["email", "subject", "name", "message"]
+      required: ["to", "subject", "text", "from"]
       properties:
-        email:
+        from:
           type: string
           format: email
-          description: Email of the user
-          example: "oompa.loompa@email.com"
-        name:
+          description: Email of the user that will sent the message
+          example: "wonka@email.com"
+        to:
           type: string
-          description: Name of the user which message will be delivered
-          example: "Oompa Loompa"
+          format: email
+          description: Email of the user that will receive the message
+          example: "oompa.loompa@email.com"
         subject:
           type: string
           description: The subject of the message
           example: "Alteração de senha"
-        message:
+        text:
           type: string
           description: The message itself with the text that will be delivered
           example: "Seu perfil foi alterado com sucesso."

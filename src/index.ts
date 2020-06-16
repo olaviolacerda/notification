@@ -1,9 +1,9 @@
 import * as R from 'ramda';
 import { Application } from './app';
 import { env } from './env';
-import './helpers/elasticApm';
 import { Logger as logger } from './logger';
 import { AppConfig } from './types';
+import './utils/elasticApm';
 
 const appConfig: AppConfig = R.pick(
   [

@@ -21,7 +21,7 @@
     "node_modules",
     "**/__tests__/**/*",
     "**/__mocks__/**/*",
-    "src/helpers/jest.ts",
+    "src/utils/jest.ts",
     "src/helpers/testHelpers.ts"
   ]
 }

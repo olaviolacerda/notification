@@ -1,20 +1,20 @@
 import { MailOptions } from "nodemailer/lib/json-transport";
 
+export type Email = Pick<MailOptions, 'to' | 'from' | 'subject' | 'text'>;
+
 interface IEmailRequest {
   headers: {
     authorization: string;
   };
   body: {
-    from: string;
+    from?: string;
     to: string[];
-    replyTo?: string[];
     subject: string;
-    html: string;
-    [key: string]: any,
+    text: string;
   };
 }
 
-export type MailerSendMailParams = Pick<MailOptions, 'to' | 'from' | 'subject' | 'text'>;
+export type MailerSendMailParams = Email;
 
 export interface IMailer {
   sendEmail(options: MailOptions): Promise<void>;

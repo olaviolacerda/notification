@@ -1,7 +1,6 @@
 import { Container } from '../../container';
 import { Logger } from '../../logger';
-
-import { IConsumer, AmqpMessage, AmqpChannel, MsgHandler } from '../../types';
+import { AmqpChannel, AmqpMessage, IConsumer, MsgHandler } from '../../types';
 import { applyHandlers, FuncHandler } from '../middlewares/handlers';
 
 export abstract class Consumer implements IConsumer {
@@ -31,6 +30,5 @@ export abstract class Consumer implements IConsumer {
         if (message) channel.ack(message);
       }
     };
-    // tslint:disable-next-line: semicolon
-  };
+  }
 }

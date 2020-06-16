@@ -1,11 +1,11 @@
+import { Mailer } from '../helpers/mailer';
 import { ContainerConfig, IContainer, ServiceContext } from '../types';
-import { UserProducer } from './integrations/UserProducer';
+import { EmailService } from './services/email';
 
 export class Container implements IContainer {
-  readonly userService: IContainer['userService'];
+  readonly emailService: IContainer['emailService'];
 
   constructor(config: ContainerConfig) {
-
     const serviceContext: ServiceContext = this
       .createServiceContext(config.vHostList);
 
@@ -15,7 +15,6 @@ export class Container implements IContainer {
   private createServiceContext = (
     vhost: ContainerConfig['vHostList'],
   ) => ({
-    userProducer: new UserProducer({ vhost }),
-    // tslint:disable-next-line: semicolon
-  });
+    mailer: new Mailer(),
+  })
 }
