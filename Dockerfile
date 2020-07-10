@@ -1,16 +1,19 @@
-FROM keymetrics/pm2:latest-alpine
+FROM node:14-alpine
 
-# Install python to compile packages
-RUN apk add --no-cache python make g++
+RUN addgroup -S service && \
+  adduser application -S -G service
 
-RUN mkdir -p /opt/app/
-WORKDIR /opt/app/
+COPY ./release /home/application/dist
+COPY package.json /home/application/package.json
+COPY package-lock.json /home/application/package-lock.json
+RUN cd /home/application && npm install --production
 
-COPY . .
+RUN chmod -R 775 /home/application
+RUN chown -R application:service /home/application
 
-RUN npm install
-RUN npm run build
+USER application
+WORKDIR /home/application
 
-EXPOSE ${SERVICEPORT}
+EXPOSE 3000
 
-CMD npm run migrate:up && npm start
+CMD node dist/index.js
