@@ -22,6 +22,6 @@
     "**/__tests__/**/*",
     "**/__mocks__/**/*",
     "src/utils/jest.ts",
-    "src/helpers/testHelpers.ts"
+    "src/utils/testHelpers.ts"
   ]
 }
