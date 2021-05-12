@@ -29,7 +29,7 @@
     "dotenv": "^8.0.0",
     "elastic-apm-node": "^3.2.0",
     "moment-timezone": "^0.5.25",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.16",
     "ramda": "^0.26.1",
     "ramda-adjunct": "^2.24.0",
     "response-time": "^2.3.2",
