@@ -28,7 +28,7 @@
     "amqplib": "^0.5.5",
     "dotenv": "^8.0.0",
     "elastic-apm-node": "^3.2.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.35",
     "nodemailer": "^6.4.8",
     "ramda": "^0.26.1",
     "ramda-adjunct": "^2.24.0",
